@@ -27,6 +27,10 @@ Run the `main.py` file using python3.
 python 3 main.py
 ```
 
+## Solution Output
+
+The solution will be output as a sequential array of the states of the problem. Note that the first array is the West bank, the second array is the East bank, and the `Right` or `Left` is the side the boat is on. The farmer is always on the side of the boat.
+
 ## Authors
 
 * **[Ethan Beaver](https://github.com/ethanbeaver)**

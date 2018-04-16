@@ -56,7 +56,11 @@ class WGC_Node:
         )
 
 
-def DFS(root_node):
+def find_solution(root_node, use_bfs=False):
+    '''
+    Find a solution to the WGC Problem.
+    use_bfs: False for DFS, True for BFS
+    '''
     to_visit = [root_node]
     node = root_node
     previous_states = []
@@ -66,7 +70,10 @@ def DFS(root_node):
         if not WGC_Node.state_in_previous(previous_states, node.west, node.east, node.boat_side):
             previous_states.append(node)
         node.generate_children(previous_states, parent_map)
-        to_visit = node.children + to_visit
+        if use_bfs:
+            to_visit = node.children + to_visit
+        else:
+            to_visit = to_visit + node.children
         if sorted(node.east) == ["c", "g", "w"]:
             solution = []
             while node is not None:
@@ -75,36 +82,16 @@ def DFS(root_node):
             return solution
     return None
 
+if __name__ == "__main__":
+    root = WGC_Node()
+    solution = find_solution(root, use_bfs=False)
+    print("DFS solution = [", end='')
+    for i in solution:
+        print(i, '\b, ', end='')
+    print("\b\b]")
 
-def BFS(root_node):
-    to_visit = [root_node]
-    node = root_node
-    previous_states = []
-    parent_map = {root_node: None}
-    while to_visit:
-        node = to_visit.pop()
-        if not WGC_Node.state_in_previous(previous_states, node.west, node.east, node.boat_side):
-            previous_states.append(node)
-        node.generate_children(previous_states, parent_map)
-        to_visit = to_visit + node.children
-        if sorted(node.east) == ["c", "g", "w"]:
-            solution = []
-            while node is not None:
-                solution = [node] + solution
-                node = parent_map[node]
-            return solution
-    return None
-
-
-root = WGC_Node()
-solution = DFS(root)
-print("DFS solution = [", end='')
-for i in solution:
-    print(i, '\b, ', end='')
-print("\b\b]")
-
-solution = BFS(root)
-print("BFS solution = [", end='')
-for i in solution:
-    print(i, '\b, ', end='')
-print("\b\b]")
+    solution = find_solution(root, use_bfs=True)
+    print("BFS solution = [", end='')
+    for i in solution:
+        print(i, '\b, ', end='')
+    print("\b\b]")

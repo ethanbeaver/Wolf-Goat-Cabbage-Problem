@@ -1,5 +1,5 @@
 # Wolf-Goat-Cabbage-Problem
-A solution to the Wolf-Goat-Cabbage Problem for CPTR430("Artificial Intelligence") using a tree
+A solution to the Wolf-Goat-Cabbage Problem for CPTR430("Artificial Intelligence") using a tree. The solution-finding algorithms are BFS and DFS.
 
 ## Problem
 
@@ -24,7 +24,7 @@ Python3
 Run the `main.py` file using python3.
 
 ```
-python3 main.py
+python 3 main.py
 ```
 
 ## Authors
